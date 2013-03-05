@@ -15,5 +15,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/Administrateur/Documents/In&apos;tech info/S5 2012-2013/MySQL/mysql-connector-java-5.1.23/mysql-connector-java-5.1.23/mysql-connector-java-5.1.23-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrateur/Documents/In&apos;tech info/S5 2012-2013/DAO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrateur/Documents/In&apos;tech info/S5 2012-2013/Eclipse/javax.servlet.jsp.jstl-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrateur/Documents/In&apos;tech info/S5 2012-2013/Eclipse/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
