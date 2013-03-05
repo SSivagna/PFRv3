@@ -13,16 +13,16 @@ import javax.servlet.http.HttpSession;
 import org.mycompany.dao.exceptions.DAOException;
 import org.mycompany.dao.factories.DAOFactory;
 import org.mycompany.dao.interfaces.IPollDAO;
-import org.mycompany.dao.interfaces.IUserDAO;
-import org.mycompany.dao.interfaces.IVoteDAO;
 import org.mycompany.dao.models.Poll;
-import org.mycompany.dao.models.Vote;
 
 @WebServlet("/PollsServlet")
 public class PollsServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-     
+	public static final String VUE_CONNECTION = "/WEB-INF/ConnectionForm.jsp";
+	public static final String VUE_ALL_POLLS = "/WEB-INF/AllPolls.jsp";
+	public static final String VUE_UNVOTERED_POLLS = "/WEB-INF/UnvoteredPolls.jsp";
+	
     public PollsServlet()
     {
         super();
@@ -38,34 +38,10 @@ public class PollsServlet extends HttpServlet
 		HttpSession session = request.getSession(false);
 		DAOFactory daoFactory = DAOFactory.getInstance("polls");
         IPollDAO pollDAO = daoFactory.getPollDAO();
-    //  IUserDAO userDAO = daoFactory.getUserDAO();
-	//	IVoteDAO voteDAO = daoFactory.getVoteDAO();
         
 		if(session == null)
 		{	
-			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("<html>");
-	        out.println("<head>");
-	
-	        String title = "Projet Fil Rouge V2";
-	        out.println("<title>" + title + "</title>");
-	        out.println("</head>");
-	        
-	        out.println("<body bgcolor=\"grey\">");
-	        out.println("<p>");
-	        out.print("<form action=\"");
-	        out.print("LoginServlet\" ");
-	        out.println("method=POST>");
-	        out.println("<label class=\"p\">Username :</label>");
-	        out.println("<input type=text size=20 name=username required>");
-	        out.println("<label class=\"p\">Password :</label>");
-	        out.println("<input type=password size=20 name=password required>");
-	        out.println("<input type=submit value=\"Se connecter\">");
-	        out.println("</form>");
-	        out.println("</p>");
-	        out.println("<br>");
-	        out.println("<h1><center>Liste des Polls</h1>");
 	       
 	        try
 			{
@@ -74,28 +50,16 @@ public class PollsServlet extends HttpServlet
 					out.println(poll.getTitle());
 					out.println("<br>");
 				}
-			} catch (DAOException e) 
+			} catch (DAOException e)
 			{
 				e.printStackTrace();
 			}
-	        
-	        out.println("</body>");
-	        out.println("</html>");
-			
-			System.out.println();
+	        this.getServletContext().getRequestDispatcher( VUE_ALL_POLLS ).forward( request, response );
 		}
 		else
 		{
-			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
-			out.println("<HTML>");
-			out.println("<head>");
-			out.println("<title>");		
-			out.println("Mes Polls");	
-			out.println("</title>");
-			out.println("</head>");
-		
-			out.println("<body>");	
+			
 			String username = (String)session.getAttribute("username");
 			
 			out.println("Bienvenue " + username);
@@ -107,9 +71,6 @@ public class PollsServlet extends HttpServlet
 			out.println("<h4> Les Pools que vous avez créé </h4>");
 			try
 			{
-				out.print("<form action=\"");
-		        out.print("VoteServlet\" ");
-		        out.println("method=POST>");
 				out.println("<table>");
 				
 				for (Poll poll:pollDAO.findAllByAuthor(user))

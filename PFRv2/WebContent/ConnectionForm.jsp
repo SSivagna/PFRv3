@@ -9,11 +9,11 @@
 
 	<body>
        <form action="connection" method=POST>
-	        <label class="p">Username :</label>
-	        	<input type=text size=20 name=username required>
-	        <label class="p">Password :</label>
-	        	<input type=password size=20 name=password required>
-	        <input type=submit value="Se connecter">
+	        <label for = "username">Username :</label>
+	        	<input type = "text" size = 20 name = "username" placeholder = "Votre pseudo" required ="required">
+	        <label for = "password">Password :</label>
+	        	<input type = "password" size = 20 name = "password" placeholder = "Votre mot de passe" required = "required">
+	        <input type = "submit" value="Se connecter">
         </form>
 </body>
 </html>
