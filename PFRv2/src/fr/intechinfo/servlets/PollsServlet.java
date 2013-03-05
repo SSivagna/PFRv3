@@ -38,7 +38,7 @@ public class PollsServlet extends HttpServlet
 		HttpSession session = request.getSession(false);
 		DAOFactory daoFactory = DAOFactory.getInstance("polls");
         IPollDAO pollDAO = daoFactory.getPollDAO();
-    //    IUserDAO userDAO = daoFactory.getUserDAO();
+    //  IUserDAO userDAO = daoFactory.getUserDAO();
 	//	IVoteDAO voteDAO = daoFactory.getVoteDAO();
         
 		if(session == null)
